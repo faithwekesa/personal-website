@@ -23,11 +23,13 @@ const KEYS = 56;
 const ENTER = 41;
 const DURATION = 6000;
 
+let played = false;
+
 export default function Opening() {
   const [n, setN] = useState(0);
   const [down, setDown] = useState([]);
   const [ran, setRan] = useState(false);
-  const [phase, setPhase] = useState('type');
+  const [phase, setPhase] = useState(played ? 'done' : 'type');
   const [move, setMove] = useState(null);
   const win = useRef(null);
   const state = useRef('type');
@@ -48,12 +50,21 @@ export default function Opening() {
     setPhase('expand');
     later(() => {
       setPhase('done');
+      played = true;
       document.documentElement.dataset.intro = 'done';
       window.scrollTo(0, 0);
     }, 1300);
   };
 
   useEffect(() => {
+    if (played) {
+      state.current = 'expand';
+      setPhase('done');
+      document.documentElement.dataset.intro = 'done';
+      const h = window.location.hash;
+      if (h) setTimeout(() => document.querySelector(h)?.scrollIntoView(), 50);
+      return undefined;
+    }
     let raf;
     let start;
     const tick = (t) => {
