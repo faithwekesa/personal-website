@@ -11,7 +11,7 @@ export const PROFILE = {
 
 export const WHATSAPP_TEXT = "Hi Faith, I came across your portfolio and I'd like to talk to you about an opportunity. When are you free for a quick chat?";
 export const WHATSAPP = `https://wa.me/${PROFILE.phone}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
-export const EMAIL_SUBJECT = 'I have a proposal for you';
+export const EMAIL_SUBJECT = 'Work opportunity for Faith Wekesa';
 export const EMAIL_BODY = [
   'Hi Faith,',
   '',
