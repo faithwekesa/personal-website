@@ -372,3 +372,19 @@ html.js-reveal .reveal:not(.in) { opacity: 0; transform: translateY(28px); }
 .cvm-note a { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
 
 @keyframes ping { from { transform: scale(1); opacity: 0.7; } to { transform: scale(3); opacity: 0; } }
+
+.codecover { position: absolute; inset: 0; background: #17201f; overflow: hidden; }
+.codecover pre { margin: 0; padding: 22px 20px; font: 400 12px/1.7 var(--mono); color: #cfe3df; white-space: pre; opacity: 0.95; }
+.codecover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, #17201f 85%); }
+.codecover .k-str, .codeblock .k-str { color: #e6c27a; }
+.codecover .k-kw, .codeblock .k-kw { color: #c9a0dc; }
+.codecover .k-pun, .codeblock .k-pun { color: #8fb3ad; }
+.restable { border-collapse: collapse; width: 100%; max-width: 38em; }
+.restable th, .restable td { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 18px; text-align: left; }
+.restable td { text-align: right; font: 500 20px var(--mono); color: var(--gold-deep); }
+.snips { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.snips figure { margin: 0; min-width: 0; }
+.snips figcaption { font: 500 13px var(--mono); color: var(--muted); margin-bottom: 8px; }
+.codeblock { margin: 0; padding: 18px 20px; border-radius: 14px; background: #17201f; color: #cfe3df; font: 400 14px/1.7 var(--mono); overflow-x: auto; }
+.pcard:has(.codecover) .panel { background: rgba(255, 255, 255, 0.94); border-color: rgba(255, 255, 255, 0.9); }
+.pcard:has(.codecover) .tags .tag { background: #fff; }

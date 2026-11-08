@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import LiveCover from '../../components/LiveCover';
 import IntroDone from '../../components/IntroDone';
 import { PROJECTS } from '../../data';
+import { highlightPy } from '../../components/highlight';
 
 export function generateStaticParams() {
   return PROJECTS.map((p) => ({ slug: p.id }));
@@ -33,7 +34,7 @@ export default async function Project({ params }) {
         <div><dt>Role</dt><dd>{p.role}</dd></div>
         <div><dt>Year</dt><dd>{p.year}</dd></div>
         <div><dt>Built with</dt><dd>{p.tags.slice(0, 3).join(', ')}</dd></div>
-        <div><dt>Status</dt><dd>Live</dd></div>
+        <div><dt>Status</dt><dd>{p.status || 'Live'}</dd></div>
       </dl>
 
       {p.live && (
@@ -44,13 +45,36 @@ export default async function Project({ params }) {
       )}
 
       <section className="cs">
-        <h2>The problem</h2>
+        <h2>The aim</h2>
         <p>{p.problem}</p>
       </section>
       <section className="cs">
         <h2>What I built</h2>
         <ul>{p.built.map((b) => <li key={b}>{b}</li>)}</ul>
       </section>
+      {p.results && (
+        <section className="cs">
+          <h2>Results</h2>
+          <table className="restable">
+            <tbody>
+              {p.results.map(([k, v]) => <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>)}
+            </tbody>
+          </table>
+        </section>
+      )}
+      {p.snippets && (
+        <section className="cs">
+          <h2>Code I ran</h2>
+          <div className="snips">
+            {p.snippets.map((s) => (
+              <figure key={s.title}>
+                <figcaption>{s.title}</figcaption>
+                <pre className="codeblock">{highlightPy(s.code)}</pre>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
       <section className="cs">
         <h2>Skills used</h2>
         <div className="tags">{p.tags.map((t) => <span className="tag" key={t}>{t}</span>)}</div>
