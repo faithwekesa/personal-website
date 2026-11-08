@@ -4,6 +4,7 @@ import LiveCover from '../../components/LiveCover';
 import IntroDone from '../../components/IntroDone';
 import { PROJECTS } from '../../data';
 import { highlightPy } from '../../components/highlight';
+import RagChat from '../../components/RagChat';
 
 export function generateStaticParams() {
   return PROJECTS.map((p) => ({ slug: p.id }));
@@ -52,6 +53,12 @@ export default async function Project({ params }) {
         <h2>What I built</h2>
         <ul>{p.built.map((b) => <li key={b}>{b}</li>)}</ul>
       </section>
+      {p.id === 'rag' && (
+        <section className="cs">
+          <h2>Try it live</h2>
+          <RagChat />
+        </section>
+      )}
       {p.shots && (
         <section className="cs">
           <h2>See it working</h2>
