@@ -59,6 +59,12 @@ export default function Page() {
                 <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">{STEP_ICONS[i]}</svg>
                 <h3 className="rib">{x.title}</h3>
                 <p>{x.text}</p>
+                {i < DOING.length - 1 && (
+                  <svg className="link" viewBox="0 0 60 40" aria-hidden="true">
+                    <path d="M0 6 C 16 6, 16 34, 30 34 S 44 6, 54 6" />
+                    <polygon points="52,2 60,6 52,10" />
+                  </svg>
+                )}
               </div>
             ))}
           </div>
