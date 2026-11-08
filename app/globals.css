@@ -90,6 +90,7 @@ dd { display: flex; flex-wrap: wrap; gap: 8px; }
 
 @media (max-width: 760px) {
   .cvbtn { padding: 8px 16px; font-size: 14px; }
+  .hero { padding-top: 30px; }
   .about { grid-template-columns: 1fr; }
   dl > div { grid-template-columns: 1fr; gap: 8px; }
   .btn { width: 100%; }
