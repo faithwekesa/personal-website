@@ -1,6 +1,8 @@
 import json
 import os
 import re
+import sys
+import urllib.error
 import time
 import urllib.request
 from http.server import BaseHTTPRequestHandler
@@ -15,9 +17,9 @@ LLM_MODEL = "openai/gpt-oss-120b"
 TOP_K = 4
 MIN_SIMILARITY = 0.45
 MAX_QUERY = 300
-PER_IP = 6
+PER_IP = 20
 WINDOW = 600
-DAILY = 400
+DAILY = 1000
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 ABSTAIN = "I cannot find the answer to this query in the provided source documents."
 CITE = re.compile(r"\[File:\s*([^,\]]+),\s*Chunk:\s*([^\]\s]+)\s*\]")
@@ -110,6 +112,8 @@ def generate(prompt):
         headers={
             "Content-Type": "application/json",
             "Authorization": "Bearer " + os.environ["GROQ_API_KEY"],
+            "User-Agent": "faith-portfolio-rag/1.0",
+            "Accept": "application/json",
         },
     )
     with urllib.request.urlopen(req, timeout=45) as r:
@@ -167,5 +171,12 @@ class handler(BaseHTTPRequestHandler):
             return self.reply(429, {"error": "Demo limit reached. Please try again in a few minutes."})
         try:
             self.reply(200, ask(query[:MAX_QUERY]))
-        except Exception:
+        except urllib.error.HTTPError as e:
+            print("groq http error", e.code, e.read()[:300], file=sys.stderr)
+            self.reply(500, {"error": "The assistant is unavailable right now (code " + str(e.code) + "). Please try again."})
+        except KeyError:
+            print("GROQ_API_KEY is not set", file=sys.stderr)
+            self.reply(500, {"error": "The assistant is not configured yet (missing key)."})
+        except Exception as e:
+            print("ask failed", repr(e), file=sys.stderr)
             self.reply(500, {"error": "The assistant is unavailable right now. Please try again."})

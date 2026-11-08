@@ -39,10 +39,17 @@ export default function RagChat() {
 
   return (
     <div className="ragchat">
+      <div className="ragchat-head">
+        <span className="ragchat-logo">R</span>
+        <div>
+          <strong>Research Assistant</strong>
+          <small>Answered from 43 arXiv papers on RAG, dense retrieval and embeddings</small>
+        </div>
+      </div>
       <div className="ragchat-log">
         {turns.length === 0 && (
           <div className="ragchat-empty">
-            <p>Ask about retrieval-augmented generation, dense retrieval or sentence embeddings. Answers come only from 43 arXiv papers and cite the exact source.</p>
+            <p>Ask a question. Every answer cites its source, or says so when the papers do not cover it.</p>
             <div className="ragchat-chips">
               {EXAMPLES.map((e) => (
                 <button type="button" key={e} onClick={() => ask(e)}>{e}</button>
@@ -90,7 +97,7 @@ export default function RagChat() {
         />
         <button type="submit" disabled={busy}>Ask</button>
       </form>
-      <p className="ragchat-note">Answers may be incomplete. Check the cited paper before relying on them. Demo is rate limited.</p>
+      <p className="ragchat-note">Answers may be incomplete. Check the cited paper before relying on them.</p>
     </div>
   );
 }
