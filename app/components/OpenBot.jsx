@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function OpenBot({ whatsapp, name, role }) {
   const [open, setOpen] = useState(false);
-  const chat = whatsapp.split('?')[0] + '?text=' + encodeURIComponent("Hi Faith, I saw your portfolio and I'd like to talk to you about an opportunity. When are you free for a quick chat?");
+  const chat = whatsapp;
   return (
     <div className="bot">
       {open && (

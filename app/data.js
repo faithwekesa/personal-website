@@ -9,7 +9,22 @@ export const PROFILE = {
   cv: '/faith-wekesa-cv.pdf',
 };
 
-export const WHATSAPP = `https://wa.me/${PROFILE.phone}?text=${encodeURIComponent('Hi Faith, I saw your portfolio')}`;
+export const WHATSAPP_TEXT = "Hi Faith, I came across your portfolio and I'd like to talk to you about an opportunity. When are you free for a quick chat?";
+export const WHATSAPP = `https://wa.me/${PROFILE.phone}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
+export const EMAIL_SUBJECT = 'I have a proposal for you';
+export const EMAIL_BODY = [
+  'Hi Faith,',
+  '',
+  "I came across your portfolio and I'd like to talk to you about an opportunity.",
+  '',
+  'Role or project: ',
+  'Company or organisation: ',
+  'A good time to talk: ',
+  '',
+  'Thank you,',
+  '',
+].join('\n');
+export const EMAIL_LINK = `https://mail.google.com/mail/?view=cm&fs=1&to=${PROFILE.email}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
 
 export const PROJECTS = [
   {
@@ -137,6 +152,23 @@ def check_citations(answer, hits):
     ],
     tags: ['Python', 'RAG', 'ChromaDB', 'sentence-transformers', 'PyMuPDF', 'Groq API', 'Evaluation', 'GitHub'],
     repo: 'https://github.com/faithwekesa/rag-research-assistant',
+  },
+  {
+    id: 'naifix',
+    title: 'Naifix',
+    host: 'naifix.lovable.app',
+    text: 'Lets Nairobi residents report potholes, flooding and dumping on a live map so planners can see where to act first.',
+    role: 'Design and development',
+    year: '2026',
+    problem: 'Problems like potholes and blocked drains get reported in scattered ways and rarely reach the people who can fix them. The aim was a civic platform where a resident reports an issue in under a minute and the city can see the patterns across wards.',
+    built: [
+      'A report flow where a resident adds a photo, pins the exact location or lets the app read it, and submits in a few taps.',
+      'A live map of reports across 17 Nairobi wards in five categories: potholes, flooding, dumping, dark streets and water leaks.',
+      'A City insights page with hotspot views that show whether a problem is a recurring pattern or a one-off.',
+      'A public status for every report, from submitted to resolved, so residents can see what happens after they report.',
+    ],
+    tags: ['Product design', 'UX research', 'Figma', 'Civic tech', 'Maps', 'Responsive design'],
+    live: 'https://naifix.lovable.app',
   },
 ];
 

@@ -2,7 +2,7 @@ import Opening from './components/Opening';
 import ProjectCard from './components/ProjectCard';
 import HeroBuild from './components/HeroBuild';
 import CvLink from './components/CvLink';
-import { PROFILE, PROJECTS, ABOUT, DOING, WHATSAPP } from './data';
+import { PROFILE, PROJECTS, ABOUT, DOING, WHATSAPP, EMAIL_LINK } from './data';
 
 const STEP_COLORS = ['#6f86c4', '#3f8a80', '#bf8f4a'];
 
@@ -65,7 +65,7 @@ export default function Page() {
           <h2>Contact</h2>
           <p className="lead">Have a role or a project in mind? Reach me through any of these.</p>
           <dl>
-            <div><dt>Email</dt><dd><a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PROFILE.email}&su=${encodeURIComponent('Hello Faith, I saw your portfolio')}`} target="_blank" rel="noreferrer">Email me</a></dd></div>
+            <div><dt>Email</dt><dd><a href={EMAIL_LINK} target="_blank" rel="noreferrer">Email me</a></dd></div>
             <div><dt>LinkedIn</dt><dd><a href={PROFILE.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn</a></dd></div>
             <div><dt>GitHub</dt><dd><a href={PROFILE.github} target="_blank" rel="noreferrer">See my GitHub</a></dd></div>
             <div><dt>WhatsApp</dt><dd><a href={WHATSAPP} target="_blank" rel="noreferrer">Chat with me on WhatsApp</a></dd></div>
