@@ -4,10 +4,10 @@ import HeroBuild from './components/HeroBuild';
 import CvLink from './components/CvLink';
 import { PROFILE, PROJECTS, ABOUT, DOING, WHATSAPP } from './data';
 
-const STEP_COLORS = ['#5f9f95', '#8a9fd0', '#d3b27d'];
+const STEP_COLORS = ['#6f86c4', '#3f8a80', '#bf8f4a'];
 const STEP_ICONS = [
-  <g key="b"><polyline points="8 6 2 12 8 18" /><polyline points="16 6 22 12 16 18" /><line x1="14" y1="4" x2="10" y2="20" /></g>,
   <g key="d"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.6 7.6" /><circle cx="11" cy="11" r="2" /></g>,
+  <g key="b"><polyline points="8 6 2 12 8 18" /><polyline points="16 6 22 12 16 18" /><line x1="14" y1="4" x2="10" y2="20" /></g>,
   <g key="s"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></g>,
 ];
 

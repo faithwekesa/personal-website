@@ -149,7 +149,7 @@ export const ABOUT = [
 ];
 
 export const DOING = [
-  { n: '01', title: 'Build', text: 'Responsive web apps in React and Next.js. When a product needs data and sign-in, I back it with FastAPI or Supabase.' },
-  { n: '02', title: 'Design', text: 'User research, flows and screens in Figma, so what I build starts from what people need.' },
+  { n: '01', title: 'Design', text: 'User research, flows and screens in Figma, so what I build starts from what people need.' },
+  { n: '02', title: 'Build', text: 'Responsive web apps in React and Next.js. When a product needs data and sign-in, I back it with FastAPI or Supabase.' },
   { n: '03', title: 'Ship with care', text: 'Authentication, role-based access, written test cases, Postman checks and deployment on Vercel through GitHub.' },
 ];
