@@ -14,7 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-intro="playing" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('faith-intro-seen')==='1')document.documentElement.dataset.intro='done'}catch(e){}" }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link

@@ -20,7 +20,6 @@ export default () => (
 );`;
 
 const DURATION = 6500;
-const SEEN = 'faith-intro-seen';
 
 const k = (b, u = 1, id, t) => ({ b, u, id: id || b, t });
 
@@ -81,10 +80,6 @@ function keysFor(ch) {
 
 let played = false;
 
-function finishFlag() {
-  try { localStorage.setItem(SEEN, '1'); } catch {}
-}
-
 export default function Opening() {
   const [n, setN] = useState(0);
   const [down, setDown] = useState([]);
@@ -113,16 +108,13 @@ export default function Opening() {
     later(() => {
       setPhase('done');
       played = true;
-      finishFlag();
       document.documentElement.dataset.intro = 'done';
       window.scrollTo({ top: 0, behavior: 'instant' });
     }, 1300);
   };
 
   useEffect(() => {
-    let seen = played;
-    try { seen = seen || localStorage.getItem(SEEN) === '1'; } catch {}
-    if (seen) {
+    if (played) {
       state.current = 'expand';
       setPhase('done');
       document.documentElement.dataset.intro = 'done';
@@ -173,53 +165,47 @@ export default function Opening() {
     <div className={`opening ${phase} ${ran ? 'ran' : ''}`}>
       <button type="button" className="skip" onClick={expand}>Skip intro</button>
       <div className="stage" aria-hidden="true">
-        <div className="rig">
-          <div className="win" ref={win} style={move || undefined}>
-            <div className="bar">
-              <i /><i /><i />
-              <span>Faith.jsx</span>
-              <b className={ran || runKey ? 'press' : ''}>Run</b>
-            </div>
-            <div className="panes">
-              <div className="code">
-                <div className="editor">
-                  <div className="gutter">
-                    {Array.from({ length: lines }, (_, i) => <span key={i}>{i + 1}</span>)}
-                  </div>
-                  <pre>{highlight(typed)}<b className="caret" /></pre>
+        <div className="win" ref={win} style={move || undefined}>
+          <div className="bar">
+            <i /><i /><i />
+            <span>Faith.jsx</span>
+            <b className={ran || runKey ? 'press' : ''}>Run</b>
+          </div>
+          <div className="panes">
+            <div className="code">
+              <div className="editor">
+                <div className="gutter">
+                  {Array.from({ length: lines }, (_, i) => <span key={i}>{i + 1}</span>)}
                 </div>
+                <pre>{highlight(typed)}<b className="caret" /></pre>
               </div>
-              <div className="pv">
-                <div className="page">
-                  <p className="pv-top">{PROFILE.role} · {PROFILE.base}</p>
-                  <h4>Hi, I&apos;m {PROFILE.name}</h4>
-                  <p className="pv-role">I build calm and useful web products.</p>
-                  <div className="pv-tags"><span>React</span><span>Next.js</span><span>TypeScript</span></div>
-                  <span className="pv-btn">Contact me</span>
-                </div>
+            </div>
+            <div className="pv">
+              <div className="page">
+                <p className="pv-top">{PROFILE.role} · {PROFILE.base}</p>
+                <h4>Hi, I&apos;m {PROFILE.name}</h4>
+                <p className="pv-role">I build calm and useful web products.</p>
+                <div className="pv-tags"><span>React</span><span>Next.js</span><span>TypeScript</span></div>
+                <span className="pv-btn">Contact me</span>
               </div>
             </div>
           </div>
-          <div className="lp-hinge" />
-          <div className="lp-deck">
-            <div className="lp-kb">
-              {ROWS.map((row, r) => (
-                <div className="lp-row" key={r}>
-                  {row.map((key, i) => (
-                    <span
-                      key={i}
-                      className={`lp-key${isDown(key.id) ? ' down' : ''}${key.id === 'enter' ? ' enter' : ''}${key.id === 'space' ? ' space' : ''}${r === 0 ? ' fn' : ''}`}
-                      style={{ flex: `${key.u} 1 0` }}
-                    >
-                      {key.t && <em>{key.t}</em>}
-                      {key.id === 'updown' ? <><b>{'\u25b2'}</b><b>{'\u25bc'}</b></> : <b>{key.b}</b>}
-                    </span>
-                  ))}
-                </div>
+        </div>
+        <div className="kbd">
+          {ROWS.map((row, r) => (
+            <div className="lp-row" key={r}>
+              {row.map((key, i) => (
+                <span
+                  key={i}
+                  className={`lp-key${isDown(key.id) ? ' down' : ''}${key.id === 'enter' ? ' enter' : ''}${key.id === 'space' ? ' space' : ''}${r === 0 ? ' fn' : ''}`}
+                  style={{ flex: `${key.u} 1 0` }}
+                >
+                  {key.t && <em>{key.t}</em>}
+                  {key.id === 'updown' ? <><b>{'\u25b2'}</b><b>{'\u25bc'}</b></> : <b>{key.b}</b>}
+                </span>
               ))}
             </div>
-            <div className="lp-pad" />
-          </div>
+          ))}
         </div>
       </div>
     </div>

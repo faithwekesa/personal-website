@@ -29,11 +29,11 @@ const PATH = [
   [0, 62, 66],
   [400, 30, 17],
   [1700, 66, 73],
-  [2200, 36, 27],
-  [3000, 37, 35],
-  [4200, 38, 47],
-  [5000, 39, 54],
-  [5800, 41, 63],
+  [2200, 38, 22],
+  [3000, 39, 33],
+  [4200, 39, 46],
+  [5000, 38, 58],
+  [5800, 58, 40],
   [6600, 47, 91],
   [7600, 50, 91],
   [8600, 64, 52],
@@ -93,15 +93,15 @@ function Figma({ lt, cx, cy }) {
   const dragging = lt >= 400 && lt < 1700;
   const fw = lt < 400 ? 0 : lt < 1700 ? Math.max(0, cx - 30) : 36;
   const fh = lt < 400 ? 0 : lt < 1700 ? Math.max(0, cy - 17) : 56;
-  const show = (s, d = 700) => clamp((lt - s) / d);
+  const show = (s, d = 600) => clamp((lt - s) / d);
   const sel = (s) => lt >= s && lt < s + 800;
-  const layers = ['Frame', 'Eyebrow', 'Heading', 'Text', 'Tags', 'Button'];
-  const counts = [lt > 1700 ? 1 : 0, lt > 2300 ? 2 : 0, lt > 3000 ? 3 : 0, lt > 4300 ? 4 : 0, lt > 5100 ? 5 : 0, lt > 5900 ? 6 : 0];
-  const n = Math.max(...counts);
+  const layers = ['Frame', 'Nav', 'Headline', 'Paragraph', 'Buttons', 'Image'];
+  const marks = [1700, 2300, 3000, 4300, 5100, 5900];
+  const n = marks.filter((m) => lt > m).length;
   return (
     <>
       <div className="w fgw">
-        <div className="tb"><i /><i /><i /><span>Portfolio — Figma</span></div>
+        <div className="tb"><i /><i /><i /><span>Wireframe — Figma</span></div>
         <div className="fgb">
           <div className="lp">
             <p>Layers</p>
@@ -116,14 +116,14 @@ function Figma({ lt, cx, cy }) {
           </div>
         </div>
       </div>
+      {lt >= 1700 && <div className="wf-name" style={{ opacity: show(1700) }}>Home · Desktop</div>}
       <div className={`frame ${dragging ? 'drag' : ''}`} style={{ left: '30%', top: '17%', width: `${fw}%`, height: `${fh}%` }}>
-        <div className="fi">
-          <p className={`e1 ${sel(2300) ? 'sel' : ''}`} style={{ opacity: show(2300) }}>{PROFILE.role} · Nairobi</p>
-          <h4 className={`e2 ${sel(3000) ? 'sel' : ''}`} style={{ clipPath: `inset(0 ${100 - show(3000, 900) * 100}% 0 0)` }}>Hi, I&apos;m Faith Wekesa</h4>
-          <p className={`e3 ${sel(4300) ? 'sel' : ''}`} style={{ opacity: show(4300) }}>I build calm and useful web products.</p>
-          <div className={`e4 ${sel(5100) ? 'sel' : ''}`} style={{ opacity: show(5100) }}><span>React</span><span>Next.js</span><span>TypeScript</span></div>
-          <span className={`e5 ${sel(5900) ? 'sel' : ''}`} style={{ opacity: show(5900, 300), background: lt > 6200 ? 'var(--gold)' : '#dcdcdc', color: lt > 6200 ? '#ffffff' : 'transparent' }}>Contact me</span>
-        </div>
+        <div className={`wf nav ${sel(2300) ? 'sel' : ''}`} style={{ opacity: show(2300) }}><i /><u /><u /><u /></div>
+        <div className={`wf head ${sel(3000) ? 'sel' : ''}`} style={{ clipPath: `inset(0 ${100 - show(3000, 800) * 100}% 0 0)` }}><i /><i /></div>
+        <div className={`wf para ${sel(4300) ? 'sel' : ''}`} style={{ opacity: show(4300) }}><i /><i /><i /></div>
+        <div className={`wf btns ${sel(5100) ? 'sel' : ''}`} style={{ opacity: show(5100) }}><i className="solid" /><i /></div>
+        <div className={`wf img ${sel(5900) ? 'sel' : ''}`} style={{ opacity: show(5900) }} />
+        <div className="wf guide" style={{ opacity: show(6300, 500) }}><b>24</b></div>
       </div>
     </>
   );
