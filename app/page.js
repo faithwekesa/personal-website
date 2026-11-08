@@ -5,11 +5,6 @@ import CvLink from './components/CvLink';
 import { PROFILE, PROJECTS, ABOUT, DOING, WHATSAPP } from './data';
 
 const STEP_COLORS = ['#6f86c4', '#3f8a80', '#bf8f4a'];
-const STEP_ICONS = [
-  <g key="d"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.6 7.6" /><circle cx="11" cy="11" r="2" /></g>,
-  <g key="b"><polyline points="8 6 2 12 8 18" /><polyline points="16 6 22 12 16 18" /><line x1="14" y1="4" x2="10" y2="20" /></g>,
-  <g key="s"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></g>,
-];
 
 export default function Page() {
   return (
@@ -48,23 +43,12 @@ export default function Page() {
 
         <section className="block reveal">
           <h2>What I do</h2>
-          <div className="flow">
+          <div className="doing">
             {DOING.map((x, i) => (
-              <div className="step" key={x.n} style={{ '--c': STEP_COLORS[i] }}>
-                <svg className="arcs" viewBox="0 0 300 300" aria-hidden="true">
-                  <circle cx="150" cy="150" r="140" className="dots" />
-                  <path className="arc" d="M14.8 113.8 A140 140 0 0 1 285.2 113.8" />
-                  <path className="arc" d="M240 257.2 A140 140 0 0 1 60 257.2" />
-                </svg>
-                <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">{STEP_ICONS[i]}</svg>
-                <h3 className="rib">{x.title}</h3>
+              <div key={x.n} style={{ '--c': STEP_COLORS[i] }}>
+                <span>{x.n}</span>
+                <h3>{x.title}</h3>
                 <p>{x.text}</p>
-                {i < DOING.length - 1 && (
-                  <svg className="link" viewBox="0 0 60 40" aria-hidden="true">
-                    <path d="M0 6 C 16 6, 16 34, 30 34 S 44 6, 54 6" />
-                    <polygon points="52,2 60,6 52,10" />
-                  </svg>
-                )}
               </div>
             ))}
           </div>
