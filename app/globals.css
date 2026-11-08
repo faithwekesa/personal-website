@@ -480,9 +480,24 @@ html.js-reveal .reveal:not(.in) { opacity: 0; transform: translateY(28px); }
 .wf.guide b { position: absolute; top: 1.2cqw; left: 0.5cqw; padding: 0.15cqw 0.7cqw; border-radius: 0.4cqw; background: #f24e72; color: #fff; font-size: 1.05cqw; font-weight: 500; }
 .wf.sel { outline: 0.2cqw solid #0f766e; outline-offset: 0.5cqw; }
 
-.doing > div { padding-top: 20px; border-top: 3px solid var(--c); }
-.doing span { color: var(--c); }
-.doing h3 { font-size: 24px; margin: 8px 0 10px; }
+.doing > div { position: relative; overflow: hidden; padding: 24px 22px 26px; border-radius: 14px; background: transparent; transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease; }
+.doing > div::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); transform-origin: left; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), height 0.3s ease; }
+html.js-reveal .reveal:not(.in) .doing > div::before { transform: scaleX(0); }
+.doing > div:nth-child(2)::before { transition-delay: 0.12s, 0s; }
+.doing > div:nth-child(3)::before { transition-delay: 0.24s, 0s; }
+.doing span { color: var(--c); display: inline-block; transition: transform 0.35s ease; }
+.doing h3 { font-size: 24px; margin: 8px 0 10px; transition: color 0.35s ease; }
 .doing p { max-width: 34ch; }
+@media (hover: hover) {
+  .doing > div:hover { background: color-mix(in srgb, var(--c) 8%, #fff); transform: translateY(-4px); box-shadow: 0 18px 34px -24px color-mix(in srgb, var(--c) 70%, transparent); }
+  .doing > div:hover::before { height: 5px; }
+  .doing > div:hover span { transform: translateX(4px); }
+  .doing > div:hover h3 { color: color-mix(in srgb, var(--c) 78%, #000); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doing > div, .doing > div::before, .doing span, .doing h3 { transition: none; }
+  .doing > div:hover { transform: none; }
+}
 
 .foot { width: min(100% - 2 * var(--pad), 1120px); margin: 0 auto; padding: 18px 0 40px; border-top: 1px solid var(--line); }
+.doing { margin-left: -22px; margin-right: -22px; }
