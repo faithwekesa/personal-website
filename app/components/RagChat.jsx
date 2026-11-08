@@ -9,6 +9,50 @@ const EXAMPLES = [
   'What is the capital of Kenya?',
 ];
 
+const CITE = /\[File:\s*([^,\]]+),\s*Chunk:\s*([^\]\s]+)\s*\]/g;
+
+function tidy(text) {
+  return text
+    .replace(/\\\(\s*/g, '')
+    .replace(/\s*\\\)/g, '')
+    .replace(/\\\[\s*/g, '')
+    .replace(/\s*\\\]/g, '')
+    .replace(/\$([^$]+)\$/g, '$1')
+    .replace(/\\(?:text|mathrm|mathbf)\{([^}]*)\}/g, '$1')
+    .replace(/_\{([^}]*)\}/g, '$1')
+    .replace(/\^\{([^}]*)\}/g, '$1');
+}
+
+function renderAnswer(text) {
+  const clean = tidy(text);
+  const nodes = [];
+  let last = 0;
+  let n = 0;
+  const seen = {};
+  for (const m of clean.matchAll(CITE)) {
+    if (m.index > last) nodes.push(...bold(clean.slice(last, m.index), 'p' + n));
+    const id = m[2];
+    if (!seen[id]) seen[id] = Object.keys(seen).length + 1;
+    nodes.push(
+      <a className="ragchat-cite" key={'c' + n} href={'https://arxiv.org/abs/' + m[1].replace('.pdf', '')} target="_blank" rel="noreferrer" title={m[1]}>
+        {seen[id]}
+      </a>
+    );
+    last = m.index + m[0].length;
+    n += 1;
+  }
+  if (last < clean.length) nodes.push(...bold(clean.slice(last), 'end'));
+  return nodes;
+}
+
+function bold(str, key) {
+  return str.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+    part.startsWith('**') && part.endsWith('**') && part.length > 4
+      ? <strong key={key + i}>{part.slice(2, -2)}</strong>
+      : part
+  );
+}
+
 export default function RagChat() {
   const [turns, setTurns] = useState([]);
   const [text, setText] = useState('');
@@ -65,7 +109,7 @@ export default function RagChat() {
               {t.r?.error && t.r.error}
               {t.r?.answer && (
                 <>
-                  <p>{t.r.answer}</p>
+                  <p>{renderAnswer(t.r.answer)}</p>
                   <div className="ragchat-meta">
                     <span>Best match {t.r.top_score}</span>
                     {t.r.citations_valid === true && <span className="ok">Citations verified</span>}
