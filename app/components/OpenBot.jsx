@@ -16,7 +16,7 @@ export default function OpenBot({ whatsapp, name, role }) {
             </div>
             <button type="button" className="bot-x" onClick={() => setOpen(false)} aria-label="Close">×</button>
           </div>
-          <p className="bot-msg">Hi there. I&apos;m open to full-time roles and internships and freelance projects and collaborations. If you have an opportunity in mind I would love to hear about it.</p>
+          <p className="bot-msg">Hi there. I&apos;m looking for junior software engineering roles, freelance gigs and collaborations. Got an assignment or an opening in mind? I would love to hear about it.</p>
           <div className="bot-actions">
             <a className="btn gold" href="#contact" onClick={() => setOpen(false)}>Contact me</a>
             <a className="btn ghost" href={whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>

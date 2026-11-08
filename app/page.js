@@ -4,6 +4,13 @@ import HeroBuild from './components/HeroBuild';
 import CvLink from './components/CvLink';
 import { PROFILE, PROJECTS, ABOUT, DOING, WHATSAPP } from './data';
 
+const STEP_COLORS = ['#5f9f95', '#8a9fd0', '#d3b27d'];
+const STEP_ICONS = [
+  <g key="b"><polyline points="8 6 2 12 8 18" /><polyline points="16 6 22 12 16 18" /><line x1="14" y1="4" x2="10" y2="20" /></g>,
+  <g key="d"><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.6 7.6" /><circle cx="11" cy="11" r="2" /></g>,
+  <g key="s"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></g>,
+];
+
 export default function Page() {
   return (
     <>
@@ -41,11 +48,17 @@ export default function Page() {
 
         <section className="block reveal">
           <h2>What I do</h2>
-          <div className="doing">
-            {DOING.map((x) => (
-              <div key={x.n}>
-                <span>{x.n}</span>
-                <h3>{x.title}</h3>
+          <div className="flow">
+            {DOING.map((x, i) => (
+              <div className="step" key={x.n} style={{ '--c': STEP_COLORS[i] }}>
+                <div className="ring">
+                  <svg className="arc" viewBox="0 0 150 150" aria-hidden="true">
+                    <circle cx="75" cy="75" r="68" className="track" />
+                    <circle cx="75" cy="75" r="68" className="run" transform="rotate(-200 75 75)" />
+                  </svg>
+                  <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">{STEP_ICONS[i]}</svg>
+                </div>
+                <h3 className="rib">{x.title}</h3>
                 <p>{x.text}</p>
               </div>
             ))}
