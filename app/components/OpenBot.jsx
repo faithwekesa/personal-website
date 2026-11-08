@@ -25,7 +25,7 @@ export default function OpenBot({ whatsapp, name, role }) {
         </div>
       )}
       <button type="button" className="bot-btn" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
-        <i />Open to work
+        <i /><svg className="bot-ico" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 20.5l1.6-5.3A8.4 8.4 0 1 1 21 11.5Z" /><path d="M8.5 10.5h7M8.5 13.5h4" /></svg><span className="bot-lbl">Open to work</span>
       </button>
     </div>
   );
