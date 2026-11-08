@@ -51,13 +51,12 @@ export default function Page() {
           <div className="flow">
             {DOING.map((x, i) => (
               <div className="step" key={x.n} style={{ '--c': STEP_COLORS[i] }}>
-                <div className="ring">
-                  <svg className="arc" viewBox="0 0 150 150" aria-hidden="true">
-                    <circle cx="75" cy="75" r="68" className="track" />
-                    <circle cx="75" cy="75" r="68" className="run" transform="rotate(-200 75 75)" />
-                  </svg>
-                  <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">{STEP_ICONS[i]}</svg>
-                </div>
+                <svg className="arcs" viewBox="0 0 300 300" aria-hidden="true">
+                  <circle cx="150" cy="150" r="140" className="dots" />
+                  <path className="arc" d="M14.8 113.8 A140 140 0 0 1 285.2 113.8" />
+                  <path className="arc" d="M240 257.2 A140 140 0 0 1 60 257.2" />
+                </svg>
+                <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">{STEP_ICONS[i]}</svg>
                 <h3 className="rib">{x.title}</h3>
                 <p>{x.text}</p>
               </div>

@@ -480,17 +480,20 @@ html.js-reveal .reveal:not(.in) { opacity: 0; transform: translateY(28px); }
 .wf.guide b { position: absolute; top: 1.2cqw; left: 0.5cqw; padding: 0.15cqw 0.7cqw; border-radius: 0.4cqw; background: #f24e72; color: #fff; font-size: 1.05cqw; font-weight: 500; }
 .wf.sel { outline: 0.2cqw solid #0f766e; outline-offset: 0.5cqw; }
 
-.flow { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px); margin-top: 8px; }
-.flow::before { content: ''; position: absolute; top: 75px; left: 16.6%; right: 16.6%; border-top: 2px dotted #cddad7; }
-.step { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.ring { position: relative; width: 150px; height: 150px; border-radius: 50%; background: #fff; }
-.ring .arc { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ring circle { fill: none; stroke-width: 3.5; }
-.ring .track { stroke: #e9efee; }
-.ring .run { stroke: var(--c); stroke-linecap: round; stroke-dasharray: 310 118; }
-.ring .ico { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; color: var(--c); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.rib { position: relative; margin-top: -16px; min-width: 176px; padding: 9px 30px; background: var(--c); color: #fff; font-size: 16px; font-weight: 500; letter-spacing: 0; line-height: 1.2; clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%); }
-.step p { margin-top: 16px; max-width: 30ch; color: var(--muted); font-size: 15.5px; line-height: 1.6; }
-@media (max-width: 900px) { .flow { grid-template-columns: 1fr; gap: 36px; } .flow::before { display: none; } }
+.flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 12px; justify-items: center; }
+.step { position: relative; width: min(100%, 350px); aspect-ratio: 1; }
+.step .arcs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.step .dots { fill: none; stroke: #c9d3d1; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0.1 7; }
+.step .arc { fill: none; stroke: var(--c); stroke-width: 5; stroke-linecap: round; }
+.step .ico { position: absolute; left: 50%; top: 17%; width: 38px; height: 38px; margin-left: -19px; color: var(--c); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.step .rib { position: absolute; left: 4%; right: 4%; top: 41%; height: 12%; display: flex; align-items: center; justify-content: center; background: var(--c); color: #fff; font-size: 17px; font-weight: 500; letter-spacing: 0; line-height: 1; clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); }
+.step p { position: absolute; left: 17%; right: 17%; top: 58%; text-align: center; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.step:not(:last-child)::after { content: '\25B8'; position: absolute; right: -30px; top: 50%; width: 36px; transform: translateY(-50%); text-align: right; color: #7d8a88; font-size: 17px; line-height: 0; background: linear-gradient(#a3b0ae, #a3b0ae) 0 50% / 26px 1.4px no-repeat; }
+@media (max-width: 900px) {
+  .flow { grid-template-columns: 1fr; gap: 24px; }
+  .step { width: min(100%, 340px); }
+  .step:not(:last-child)::after { display: none; }
+  .step .rib { font-size: 16px; }
+}
 
 .foot { width: min(100% - 2 * var(--pad), 1120px); margin: 0 auto; padding: 18px 0 40px; border-top: 1px solid var(--line); }
