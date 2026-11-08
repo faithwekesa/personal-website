@@ -52,6 +52,20 @@ export default async function Project({ params }) {
         <h2>What I built</h2>
         <ul>{p.built.map((b) => <li key={b}>{b}</li>)}</ul>
       </section>
+      {p.shots && (
+        <section className="cs">
+          <h2>See it working</h2>
+          <div className="shots">
+            {p.shots.map((s) => (
+              <figure key={s.src}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.src} alt={s.alt} loading="lazy" />
+                <figcaption>{s.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
       {p.results && (
         <section className="cs">
           <h2>Results</h2>

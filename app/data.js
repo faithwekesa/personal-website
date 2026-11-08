@@ -100,6 +100,9 @@ export const PROJECTS = [
       'A web chat page where each answer has source cards that link back to the paper on arXiv.',
       'An evaluation on 10 questions with the checks computed in code: 7 of 10 correct overall, 7 of 8 retrieval hits and both out-of-scope questions declined.',
     ],
+    shots: [
+      { src: '/rag-demo.png', alt: 'The Research Assistant chat page showing source cards with match scores, and a question outside the papers being declined', caption: 'The chat page lists the papers behind an answer with their match scores, and declines a question the papers do not cover.' },
+    ],
     results: [
       ['Right chunk retrieved', '7/8'],
       ['Answer correct (in scope)', '5/8'],

@@ -388,3 +388,7 @@ html.js-reveal .reveal:not(.in) { opacity: 0; transform: translateY(28px); }
 .codeblock { margin: 0; padding: 18px 20px; border-radius: 14px; background: #17201f; color: #cfe3df; font: 400 14px/1.7 var(--mono); overflow-x: auto; }
 .pcard:has(.codecover) .panel { background: rgba(255, 255, 255, 0.94); border-color: rgba(255, 255, 255, 0.9); }
 .pcard:has(.codecover) .tags .tag { background: #fff; }
+.shots { min-width: 0; }
+.shots figure { margin: 0; max-width: 560px; }
+.shots img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 24px 50px -30px rgba(30, 30, 30, 0.35); }
+.shots figcaption { margin-top: 12px; font-size: 15px; line-height: 1.5; color: var(--muted); }
