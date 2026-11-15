@@ -28,6 +28,25 @@ export const EMAIL_LINK = `https://mail.google.com/mail/?view=cm&fs=1&to=${PROFI
 
 export const PROJECTS = [
   {
+    id: 'challenger',
+    title: 'Challenger Unveiled',
+    host: 'meridian-blond-nu.vercel.app',
+    text: 'A scroll-driven tribute page where one car photo builds itself part by part then plays through real facts about the 1970 Dodge Challenger.',
+    role: 'Design and development',
+    year: '2026',
+    problem: 'Most car pages are a gallery of photos. The aim was a motion experiment where a single photo becomes the whole story, with the car assembling itself and the facts arriving as a calm reel.',
+    built: [
+      'A car photo cut into nine parts with clip paths. The wheels and body panels drift in and lock together on load.',
+      'A timed reel that plays by itself for about 45 seconds. Scrolling or a key press takes over and a Pause tour button gives control back.',
+      'A smoothed camera path that glides through four chapters on design and engines and size and the first model year without ever stopping dead.',
+      'An ending where the headlights go out and the name prints letter by letter on a black screen.',
+      'Facts taken from Wikipedia and shown with a source link. The page says clearly that it is an unofficial fan tribute.',
+    ],
+    tags: ['Next.js', 'React', 'TypeScript', 'Motion', 'CSS masks', 'Scroll animation', 'GitHub', 'Vercel'],
+    live: 'https://meridian-blond-nu.vercel.app',
+    repo: 'https://github.com/faithwekesa/meridian',
+  },
+  {
     id: 'safari',
     title: 'Safari Atlas',
     host: 'safari-atlas.vercel.app',
