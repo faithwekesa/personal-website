@@ -128,7 +128,7 @@ export const PROJECTS = [
       'A timed reel that plays by itself for about 45 seconds. Scrolling or a key press takes over and a Pause tour button gives control back.',
       'A smoothed camera path that glides through four chapters on design and engines and size and the first model year without ever stopping dead.',
       'An ending where the headlights go out and the name prints letter by letter on a black screen.',
-      'Facts taken from Wikipedia and shown with a source link. The page says clearly that it is an unofficial fan tribute.',
+      'Facts checked against a Dodge press release and the 1970 sales brochure and shown with source links. The page says clearly that it is an unofficial fan tribute.',
     ],
     tags: ['Next.js', 'React', 'TypeScript', 'Motion', 'CSS masks', 'Scroll animation', 'GitHub', 'Vercel'],
     live: 'https://meridian-blond-nu.vercel.app',
