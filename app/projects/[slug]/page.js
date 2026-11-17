@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import LiveCover from '../../components/LiveCover';
+import DeviceShowcase from '../../components/DeviceShowcase';
 import IntroDone from '../../components/IntroDone';
 import { PROJECTS } from '../../data';
 import { highlightPy } from '../../components/highlight';
@@ -38,11 +39,15 @@ export default async function Project({ params }) {
         <div><dt>Status</dt><dd>{p.status || 'Live'}</dd></div>
       </dl>
 
-      {p.live && (
-        <a className="bigcover" href={p.live} target="_blank" rel="noreferrer" aria-label={`Open ${p.title}`}>
-          <div className="chrome"><i /><i /><i /><span>{p.host}</span></div>
-          <LiveCover url={p.live} title={p.title} />
-        </a>
+      {p.devices && <DeviceShowcase devices={p.devices} title={p.title} host={p.host} live={p.live} />}
+
+      {p.live && !p.devices && (
+        <div className="cover-stage">
+          <a className="bigcover" href={p.live} target="_blank" rel="noreferrer" aria-label={`Open ${p.title}`}>
+            <div className="chrome"><i /><i /><i /><span>{p.host}</span></div>
+            <LiveCover url={p.live} title={p.title} />
+          </a>
+        </div>
       )}
 
       <section className="cs">
@@ -53,6 +58,18 @@ export default async function Project({ params }) {
         <h2>What I built</h2>
         <ul>{p.built.map((b) => <li key={b}>{b}</li>)}</ul>
       </section>
+      {p.decisions && (
+        <section className="cs">
+          <h2>Decisions I made</h2>
+          <ul>{p.decisions.map((b) => <li key={b}>{b}</li>)}</ul>
+        </section>
+      )}
+      {p.learned && (
+        <section className="cs">
+          <h2>What I learned</h2>
+          <ul>{p.learned.map((b) => <li key={b}>{b}</li>)}</ul>
+        </section>
+      )}
       {p.id === 'rag' && (
         <section className="cs">
           <h2>Try it live</h2>
